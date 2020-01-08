@@ -5,7 +5,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #mySplash {
-  background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nidalee_9.jpg');
+  background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nidalee_9.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;

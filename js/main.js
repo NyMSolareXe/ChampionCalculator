@@ -51,16 +51,15 @@ async function changeChampionSkin(myChampName) {
   let randomSkin = parseInt(Math.random() * jsonObject[myChamp].skins.length);
   randomSkin = champSkinArrayReal[randomSkin];
 
-  // mySplash.style.backgroundImage = `url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
+  mySplash.style.backgroundImage = `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
 }
-
 
 // // Client Side Only
 // async function initializeData() {
 //   const response9 = await fetch(naLatestPatchURL);
 //   const jsonObject9 = await response9.json();
 //   version = jsonObject9.dd;
-//   url = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
+//   url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
 //   const response = await fetch(url);
 //   const jsonObject = await response.json();
 //   championList = jsonObject.data;
@@ -70,7 +69,7 @@ async function changeChampionSkin(myChampName) {
 
 // async function changeChampionSkin(myChampName) {
   // const myChamp = myChampName;
-  // const response1 = await fetch(`http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
+  // const response1 = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
   // const jsonObject = await response1.json();
 
   // let champSkinArray = jsonObject.data[myChamp].skins;
@@ -83,7 +82,7 @@ async function changeChampionSkin(myChampName) {
   // let randomSkin = parseInt(Math.random() * jsonObject.data[myChamp].skins.length);
   // randomSkin = champSkinArrayReal[randomSkin];
 
-  // mySplash.style.backgroundImage = `url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
+  // mySplash.style.backgroundImage = `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
 // }
 
 
@@ -273,15 +272,3 @@ function calculateValues() {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

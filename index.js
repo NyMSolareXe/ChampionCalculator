@@ -23,7 +23,7 @@ let version;
     const response9 = await fetch(naLatestPatchURL);
     const jsonObject9 = await response9.json();
     version = jsonObject9.dd;
-    url = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
+    url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
     // const response = await fetch(url);
     // const jsonObject = await response.json();
     // res.send(jsonObject.data);    
@@ -41,7 +41,7 @@ app.get('/api', async (req, res) => {
 // Get the SKIN
 app.get('/api/:champName', async (req, res) => {
     const myChamp = req.params.champName;
-    const response1 = await fetch(`http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
+    const response1 = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
     const jsonObject = await response1.json();
     res.send(jsonObject.data);
 });
