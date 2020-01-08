@@ -98,8 +98,17 @@ async function josephina(myChampName) {
   const myChamp = myChampName;
   const response1 = await fetch(`http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
   const jsonObject = await response1.json();
+
+  let champSkinArray = jsonObject.data[myChamp].skins;
+  let champSkinArrayReal = [];
+
+  champSkinArray.forEach(uniqueSkin => {
+    champSkinArrayReal.push(uniqueSkin.num);
+    // console.log(uniqueSkin.num);
+  })
+
   let randomSkin = parseInt(Math.random() * jsonObject.data[myChamp].skins.length);
-  console.log(jsonObject.data[myChamp].skins.length)
+  randomSkin = champSkinArrayReal[randomSkin];
 
   mySplash.style.backgroundImage = `url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
 
@@ -175,7 +184,6 @@ const searchChampions = async searchText => {
     var elements = document.querySelectorAll('#removeMe')
     if(elements.length > 0) {
       elements[0].remove();
-      console.log(elements);
     }
 
     let temp = document.createElement('div');
