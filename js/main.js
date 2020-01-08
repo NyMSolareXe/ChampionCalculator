@@ -1,4 +1,6 @@
-const url = 'http://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/champion.json';
+let url;
+let version;
+const naLatestPatchURL = 'https://ddragon.leagueoflegends.com/realms/na.json';
 const search = document.getElementById("search");
 const matchList = document.getElementById("match-List");
 const jagger = document.getElementById('jagger');
@@ -67,14 +69,46 @@ let championNameArrayOnly = [];
 let championList = {};
 
 
-(async function fetchData() {
-  const response = await fetch('/api');
-  // console.log(response);
-  const jsonObject = await response.json();
-  // championList = jsonObject.data;
-  championList = jsonObject;
-  championNameArrayOnly = Object.keys(championList);
-})();
+// (async function fetchData() {
+//   const response = await fetch('/api');
+//   const jsonObject = await response.json();
+//   championList = jsonObject;
+//   championNameArrayOnly = Object.keys(championList);
+// })();
+
+// let championNameArrayOnly = [];
+// const url = 'http://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/champion.json';
+
+async function joseph() {
+  const response9 = await fetch(naLatestPatchURL);
+  const jsonObject9 = await response9.json();
+  version = jsonObject9.dd;
+
+  url = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
+
+    const response = await fetch(url);
+    const jsonObject = await response.json();
+    championList = jsonObject.data;
+    championNameArrayOnly = Object.keys(championList);
+
+};
+joseph();
+
+async function josephina(myChampName) {
+  const myChamp = myChampName;
+  const response1 = await fetch(`http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
+  const jsonObject = await response1.json();
+  let randomSkin = parseInt(Math.random() * jsonObject.data[myChamp].skins.length);
+  console.log(jsonObject.data[myChamp].skins.length)
+
+  mySplash.style.backgroundImage = `url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
+
+}
+
+
+
+
+
 
 
 // calculateValues();
@@ -137,9 +171,19 @@ const searchChampions = async searchText => {
     }
 
     let messager = document.getElementById('messager');
+
+    var elements = document.querySelectorAll('#removeMe')
+    if(elements.length > 0) {
+      elements[0].remove();
+      console.log(elements);
+    }
+
     let temp = document.createElement('div');
     temp.id = 'removeMe';
     messager.appendChild(temp);
+
+    
+
 
     if (badChampionArray.hasOwnProperty(found)) {
       attackSpeed.value = badChampionArray[found].baseAs;
@@ -152,6 +196,7 @@ const searchChampions = async searchText => {
       temp.remove();
     }, 3000);
 
+    josephina(found);
     calculateValues();
 
   }
@@ -181,7 +226,7 @@ const outputHtml = matches => {
     const html = matches
       .map(
         match => `
-        <div class="card card-body mb-1 btn btn-primary" id="${match}"><h4>${match}</h4>
+        <div class=" mb-1 btn btn-primary" id="${match}"><h6>${match}</h6>
         </div>
         `
       )
