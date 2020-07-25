@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
+const cors = require('cors')
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5501;
 
-app.listen(port, () => console.log('Listening for connections'));
+app.listen(port, () => console.log(`Listening for connections on PORT ${port}`));
 
 
+app.use(cors())
 app.use(express.static(__dirname));
 app.use(express.json({ limit: '10mb' }));
 

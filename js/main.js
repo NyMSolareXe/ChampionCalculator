@@ -2,6 +2,7 @@ const naLatestPatchURL = 'https://ddragon.leagueoflegends.com/realms/na.json';
 const search = document.getElementById("search");
 const matchList = document.getElementById("match-List");
 const myTable = document.getElementById('mainTable');
+const endpoint = 'http://localhost:5501'
 
 let url;
 let version;
@@ -30,7 +31,7 @@ let championList = {};
 
 // Node JS Heroku
 (async function fetchData() {
-  const response = await fetch('/api');
+  const response = await fetch(`${endpoint}/api`);
   const jsonObject = await response.json();
   championList = jsonObject;
   championNameArrayOnly = Object.keys(championList);
@@ -38,7 +39,7 @@ let championList = {};
 
 async function changeChampionSkin(myChampName) {
   const myChamp = myChampName;
-  const response1 = await fetch(`/api/${myChamp}`);
+  const response1 = await fetch(`${endpoint}/api/${myChamp}`);
   const jsonObject = await response1.json();
 
   let champSkinArray = jsonObject[myChamp].skins;
@@ -47,7 +48,7 @@ async function changeChampionSkin(myChampName) {
   champSkinArray.forEach(uniqueSkin => {
     champSkinArrayReal.push(uniqueSkin.num);
   })
-  
+
   let randomSkin = parseInt(Math.random() * jsonObject[myChamp].skins.length);
   randomSkin = champSkinArrayReal[randomSkin];
 
@@ -68,21 +69,21 @@ async function changeChampionSkin(myChampName) {
 // initializeData();
 
 // async function changeChampionSkin(myChampName) {
-  // const myChamp = myChampName;
-  // const response1 = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
-  // const jsonObject = await response1.json();
+// const myChamp = myChampName;
+// const response1 = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${myChamp}.json`);
+// const jsonObject = await response1.json();
 
-  // let champSkinArray = jsonObject.data[myChamp].skins;
-  // let champSkinArrayReal = [];
+// let champSkinArray = jsonObject.data[myChamp].skins;
+// let champSkinArrayReal = [];
 
-  // champSkinArray.forEach(uniqueSkin => {
-  //   champSkinArrayReal.push(uniqueSkin.num);
-  // })
+// champSkinArray.forEach(uniqueSkin => {
+//   champSkinArrayReal.push(uniqueSkin.num);
+// })
 
-  // let randomSkin = parseInt(Math.random() * jsonObject.data[myChamp].skins.length);
-  // randomSkin = champSkinArrayReal[randomSkin];
+// let randomSkin = parseInt(Math.random() * jsonObject.data[myChamp].skins.length);
+// randomSkin = champSkinArrayReal[randomSkin];
 
-  // mySplash.style.backgroundImage = `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
+// mySplash.style.backgroundImage = `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${myChamp}_${randomSkin}.jpg)`;
 // }
 
 
